@@ -22,15 +22,7 @@ from skimage.morphology import watershed
 from scipy.special import expit
 from scipy.stats import entropy
 import vigra 
-def random_label_cmap(n=2**16):
-   import matplotlib
-   import colorsys
-   # cols = np.random.rand(n,3)
-   # cols = np.random.uniform(0.1,1.0,(n,3))
-   h,l,s = np.random.uniform(0,1,n), 0.4 + np.random.uniform(0,0.6,n), 0.2 + np.random.uniform(0,0.8,n)
-   cols = np.stack([colorsys.hls_to_rgb(_h,_l,_s) for _h,_l,_s in zip(h,l,s)],axis=0)
-   cols[0] = 0
-   return matplotlib.colors.ListedColormap(cols)
+
 
 raw=np.load('raw_CREMI25.npy')
 p_maps=np.load('boundary_p_maps_CREMI25.npy')
@@ -59,10 +51,6 @@ seg_WS, max_label = vigra.analysis.watersheds(-expit(p_maps), seeds=seeds.astype
 
 #%%
 plots=(2,3)
-num_colors=2**6
-rmap=random_label_cmap(num_colors)
-#rmap.colors[0]=np.array([1,0,0])
-#rmap.colors[int((18-17)/(62-17)*num_colors)]=np.array([127.5,214.5,247])/255
 rmap.colors=np.load('colormap_64.npy')
 rmap.colors[int((24-17)/(62-17)*num_colors)]=np.array([0,00,147])/255
 plt.axis('off')
@@ -100,4 +88,3 @@ plt.axis('off')
 
 
 plt.show()
-
