@@ -9,6 +9,7 @@ Our paper is mainly theoretical. We do not aim to provide a code of the Probabil
 ### Prerequisites
 
 [Vigra](https://github.com/ukoethe/vigra)
+
 [Scikit-Image](https://scikit-image.org/docs/dev/auto_examples/segmentation/plot_random_walker_segmentation.html)
 
 
